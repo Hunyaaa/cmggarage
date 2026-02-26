@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
+import workshop from "@/assets/workshop.jpeg";
 
 const HeroSection = () => {
   const scrollToContact = () => {
@@ -7,14 +9,14 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center grunge-overlay overflow-hidden">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary" />
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-rust-dark/20 blur-[100px]" />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Workshop background */}
+      <div className="absolute inset-0">
+        <img src={workshop} alt="CMG műhely" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-background/40" />
       </div>
-      
+
       {/* Diagonal scratches */}
       <div className="absolute inset-0 opacity-5" style={{
         backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 100px, hsl(0 0% 30%) 100px, hsl(0 0% 30%) 101px)`,
@@ -26,16 +28,18 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Logo mark */}
+          {/* Logo */}
           <div className="mb-6 inline-block">
-            <div className="w-24 h-24 mx-auto border-2 border-primary rounded-full flex items-center justify-center mb-4">
-              <span className="font-display text-3xl text-primary">CMG</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="C.M.G. PDR&Carpolish logó" 
+              className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full border-2 border-primary object-cover shadow-lg shadow-primary/20"
+            />
           </div>
           
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider mb-2">
-            <span className="text-primary">CMG</span>{" "}
-            <span className="text-foreground">CARPOLISH</span>
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider mb-2">
+            <span className="text-primary">C.M.G.</span>{" "}
+            <span className="text-foreground">PDR&Carpolish</span>
           </h1>
           
           <div className="scratch-line w-48 mx-auto my-6" />
