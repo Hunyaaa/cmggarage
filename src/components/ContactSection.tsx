@@ -153,7 +153,7 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     className="font-body text-foreground hover:text-primary transition-colors"
                   >
-                    CMG Carpolish – Facebook
+                    C.M.G. PDR&Carpolish – Facebook
                   </a>
                 </div>
               </div>

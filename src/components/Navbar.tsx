@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 
 const links = [
   { label: "Főoldal", href: "#hero" },
@@ -21,8 +22,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16">
-        <button onClick={() => scrollTo("#hero")} className="font-display text-xl tracking-wider text-primary">
-          CMG<span className="text-foreground"> CARPOLISH</span>
+        <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2">
+          <img src={logo} alt="C.M.G. logó" className="w-8 h-8 rounded-full object-cover" />
+          <span className="font-display text-lg tracking-wider">
+            <span className="text-primary">C.M.G.</span>
+            <span className="text-foreground"> PDR&Carpolish</span>
+          </span>
         </button>
 
         {/* Desktop */}

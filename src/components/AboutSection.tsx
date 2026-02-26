@@ -27,7 +27,7 @@ const AboutSection = () => {
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A <span className="text-primary font-semibold">CMG Carpolish</span>-t{" "}
+            A <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span>-t{" "}
             <span className="text-foreground font-semibold">Gyarmati István</span> alapította 
             Nagykanizsán. Egyéni vállalkozóként minden munkát személyesen, a legnagyobb 
             odafigyeléssel végez – legyen szó egy egyszerű polírozásról vagy komplex 
