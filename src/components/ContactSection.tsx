@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Facebook } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const serviceOptions = [
   "Egy- és többlépcsős polírozás",
@@ -20,14 +21,15 @@ const ContactSection = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = (data.get("name") as string)?.trim();
-    const phone = (data.get("phone") as string)?.trim();
-    const email = (data.get("email") as string)?.trim();
-    const message = (data.get("message") as string)?.trim();
+    const formData = new FormData(form);
+    const name = (formData.get("name") as string)?.trim();
+    const phone = (formData.get("phone") as string)?.trim();
+    const email = (formData.get("email") as string)?.trim();
+    const message = (formData.get("message") as string)?.trim();
+    const service = (formData.get("service") as string)?.trim();
 
     if (!name || !phone) {
       toast({ title: "Hiba", description: "Kérjük, töltsd ki a kötelező mezőket (Név, Telefon).", variant: "destructive" });
@@ -39,12 +41,18 @@ const ContactSection = () => {
     }
 
     setLoading(true);
-    // Simulate send
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: { name, phone, email, service, message },
+      });
+      if (error) throw error;
       toast({ title: "Üzenet elküldve!", description: "Hamarosan felvesszük Veled a kapcsolatot." });
       form.reset();
-    }, 1000);
+    } catch (err) {
+      toast({ title: "Hiba", description: "Nem sikerült elküldeni az üzenetet. Próbáld újra később.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
