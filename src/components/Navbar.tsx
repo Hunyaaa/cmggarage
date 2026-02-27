@@ -4,9 +4,10 @@ import logo from "@/assets/logo.jpeg";
 
 const links = [
   { label: "Főoldal", href: "#hero" },
-  { label: "Rólunk", href: "#about" },
   { label: "Szolgáltatások", href: "#services" },
   { label: "Galéria", href: "#gallery" },
+  { label: "Árlista", href: "#pricing" },
+  { label: "Rólunk", href: "#about" },
   { label: "Kapcsolat", href: "#contact" },
 ];
 

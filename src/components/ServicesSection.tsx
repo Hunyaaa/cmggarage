@@ -151,6 +151,9 @@ const ServicesSection = () => {
           <p className="font-body text-muted-foreground">
             Prémium Autópolírozás és PDR Horpadásjavítás
           </p>
+          <p className="font-body text-muted-foreground mt-1">
+            Autópolírozás – Fényezéskorrekció mesterfokon
+          </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
