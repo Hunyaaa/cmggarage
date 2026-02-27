@@ -29,7 +29,7 @@ const GallerySection = () => {
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-muted-foreground">
-            Munkáink – az eredmény magáért beszél
+            Munkáim – az eredmények magukért beszélnek
           </p>
         </motion.div>
 

@@ -8,9 +8,9 @@ const AboutSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const features = [
-    { icon: Award, title: "Tapasztalat", desc: "Évek szakmai gyakorlata a prémium autóápolásban" },
-    { icon: Wrench, title: "Minőség", desc: "Professzionális eszközök és anyagok használata" },
-    { icon: Heart, title: "Szenvedély", desc: "Minden autó egyedi figyelmet és törődést kap" },
+    { icon: Award, title: "Tapasztalat", desc: "Nem csak évek – több száz javított autó tapasztalata. Valódi, gyakorlati tudás prémium autópolírozás és PDR területén." },
+    { icon: Wrench, title: "Minőség", desc: "Csak professzionális eszközökkel és prémium anyagokkal dolgozunk. Nincsenek kompromisszumok – sem technológiában, sem kivitelezésben." },
+    { icon: Heart, title: "Szenvedély", desc: "Nem munkaként tekintünk rá – ez a hivatásunk. Minden autó egyedi figyelmet és precíz törődést kap. Legyen szó luxus vagy családi autóról." },
   ];
 
   return (
