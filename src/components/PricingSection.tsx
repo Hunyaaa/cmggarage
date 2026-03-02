@@ -5,7 +5,7 @@ const pricingItems = [
   {
     title: "HORPADÁSJAVÍTÁS – PDR",
     subtitle: "Fényezés nélküli horpadásjavítás PDR technológiával",
-    price: "20.000 Ft-tól",
+    price: "10.000 Ft-tól",
     note: "Pontos ár a sérülés mérete és elhelyezkedése alapján",
     features: [
       "Fényezés megőrzése",
@@ -33,7 +33,7 @@ const pricingItems = [
   {
     title: "2–3 LÉPCSŐS KORREKCIÓS POLÍR",
     subtitle: "Mélyebb karcok és oxidáció eltávolítása",
-    price: "200.000 Ft-tól",
+    price: "120.000 Ft-tól",
     note: "Sérültségtől és lakkréteg állapottól függően",
     features: [
       "Mélytisztító előkészítés",
@@ -42,6 +42,20 @@ const pricingItems = [
       "Lakkréteg finiselés",
       "Showroom fény",
       "Igény esetén kerámia előkészítés",
+    ],
+  },
+  {
+    title: "TELJES AUTÓ KERÁMIA BEVONAT",
+    subtitle: "Hosszú távú fényezésvédelem a teljes karosszériára",
+    price: "200.000 Ft-tól",
+    note: "Karosszéria mérettől és állapottól függően",
+    features: [
+      "Teljes karosszéria kerámia bevonat",
+      "UV és vegyszer védelem",
+      "Könnyebb tisztíthatóság",
+      "Tartós, mély fény",
+      "Korrekciós polírozás után alkalmazva",
+      "Akár 4 év tartósság",
     ],
   },
   {
@@ -73,26 +87,24 @@ const pricingItems = [
   {
     title: "FÉNYSZÓRÓ FELÚJÍTÁS – 1,5 ÉV GARANCIÁVAL",
     subtitle: "Matt, besárgult lámpák felújítása",
-    price: "35.000 Ft/pár",
+    price: "30.000 Ft/pár",
     note: null,
     features: [
-      "Többlépcsős csiszolás",
-      "Polírozás",
+      "Mélycsiszolás és korrekció",
       "UV álló bevonat",
-      "Esztétikai javulás",
+      "Esztétikai helyreállítás",
       "1,5 év garancia",
     ],
   },
   {
     title: "FÉNYSZÓRÓ FELÚJÍTÁS – 2,5 ÉV GARANCIÁVAL",
-    subtitle: "Prémium UV védelemmel",
-    price: "45.000 Ft/pár",
+    subtitle: "Prémium kerámia védelemmel",
+    price: "35.000 Ft/pár",
     note: null,
     features: [
       "Mélycsiszolás és korrekció",
-      "Prémium UV védő lakkréteg",
-      "Tartós felületvédelem",
-      "Esztétikai javulás",
+      "Esztétikai helyreállítás",
+      "Kerámia bevonat",
       "2,5 év garancia",
     ],
   },
