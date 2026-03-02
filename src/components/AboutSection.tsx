@@ -27,8 +27,8 @@ const AboutSection = () => {
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Gyaresz vagyok, a <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span> alapítója és egyetlen embere.
-            Nagykanizsán dolgozom, és minden munkát személyesen, a legnagyobb
+            Gyaresz vagyok, a <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span> alapítója.
+            Nagykanizsán van a műhelyem, és minden munkát személyesen, a legnagyobb
             odafigyeléssel végzek – legyen szó egy egyszerű polírozásról vagy komplex
             horpadásjavításról.
           </p>
