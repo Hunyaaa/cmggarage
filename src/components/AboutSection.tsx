@@ -8,9 +8,9 @@ const AboutSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const features = [
-    { icon: Award, title: "Tapasztalat", desc: "Nem csak évek – több száz javított autó tapasztalata. Valódi, gyakorlati tudás prémium autópolírozás és PDR területén." },
-    { icon: Wrench, title: "Minőség", desc: "Csak professzionális eszközökkel és prémium anyagokkal dolgozunk. Nincsenek kompromisszumok – sem technológiában, sem kivitelezésben." },
-    { icon: Heart, title: "Szenvedély", desc: "Nem munkaként tekintünk rá – ez a hivatásunk. Minden autó egyedi figyelmet és precíz törődést kap. Legyen szó luxus vagy családi autóról." },
+    { icon: Award, title: "Tapasztalat", desc: "Nem csak évek – több száz javított autó tapasztalata áll mögöttem. Valódi, gyakorlati tudást szereztem prémium autópolírozás és PDR területén." },
+    { icon: Wrench, title: "Minőség", desc: "Csak professzionális eszközökkel és prémium anyagokkal dolgozom. Nincsenek kompromisszumok – sem technológiában, sem kivitelezésben." },
+    { icon: Heart, title: "Szenvedély", desc: "Nem munkaként tekintek rá – ez a hivatásom. Minden autó egyedi figyelmet és precíz törődést kap tőlem. Legyen szó luxus vagy családi autóról." },
   ];
 
   return (
@@ -23,13 +23,13 @@ const AboutSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4">
-            RÓLUNK
+            RÓLAM
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span> Nagykanizsán.
-            Egyéni vállalkozóként minden munkát személyesen, a legnagyobb 
-            odafigyeléssel végez – legyen szó egy egyszerű polírozásról vagy komplex 
+            Gyaresz vagyok, a <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span> alapítója és egyetlen embere.
+            Nagykanizsán dolgozom, és minden munkát személyesen, a legnagyobb
+            odafigyeléssel végzek – legyen szó egy egyszerű polírozásról vagy komplex
             horpadásjavításról.
           </p>
         </motion.div>

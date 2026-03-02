@@ -47,8 +47,11 @@ const HeroSection = () => {
           <p className="font-heading text-xl md:text-2xl uppercase tracking-[0.3em] text-muted-foreground mb-2">
             Ahol az autód újjászületik
           </p>
+          <p className="font-body text-sm text-muted-foreground mb-1">
+            Nagykanizsa, Egry József u. 24.
+          </p>
           <p className="font-body text-sm text-muted-foreground mb-10">
-            Nagykanizsa · Gyarmati István e.v.
+            Gyarmati István e.v.
           </p>
         </motion.div>
 
