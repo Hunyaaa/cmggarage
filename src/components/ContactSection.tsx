@@ -1,18 +1,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Phone, Mail, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Upload, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 const serviceOptions = [
+  "PDR – Horpadásjavítás",
+  "Jégkár javítás",
   "Egy- és többlépcsős polírozás",
   "Kerámia bevonat",
-  "PDR – Horpadásjavítás",
   "Fényszóró felújítás",
-  "Fényszóró felújítás oktatás",
-  "Teljes detailing",
+  "Workshop",
+  "Egyéb",
 ];
 
 const ContactSection = () => {
@@ -20,6 +21,20 @@ const ContactSection = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [selectedService, setSelectedService] = useState("");
+  const [customService, setCustomService] = useState("");
+  const [images, setImages] = useState<File[]>([]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setImages((prev) => [...prev, ...newFiles].slice(0, 5));
+    }
+  };
+
+  const removeImage = (index: number) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,8 +43,9 @@ const ContactSection = () => {
     const name = (formData.get("name") as string)?.trim();
     const phone = (formData.get("phone") as string)?.trim();
     const email = (formData.get("email") as string)?.trim();
+    const carType = (formData.get("carType") as string)?.trim();
     const message = (formData.get("message") as string)?.trim();
-    const service = (formData.get("service") as string)?.trim();
+    const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
 
     if (!name || !phone) {
       toast({ title: "Hiba", description: "Kérjük, töltsd ki a kötelező mezőket (Név, Telefon).", variant: "destructive" });
@@ -42,12 +58,32 @@ const ContactSection = () => {
 
     setLoading(true);
     try {
+      // Upload images if any
+      const imageUrls: string[] = [];
+      for (const img of images) {
+        const fileName = `${Date.now()}-${img.name}`;
+        const { data, error: uploadError } = await supabase.storage
+          .from("contact-images")
+          .upload(fileName, img);
+        if (uploadError) {
+          console.error("Upload error:", uploadError);
+        } else if (data) {
+          const { data: urlData } = supabase.storage
+            .from("contact-images")
+            .getPublicUrl(data.path);
+          imageUrls.push(urlData.publicUrl);
+        }
+      }
+
       const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: { name, phone, email, service, message },
+        body: { name, phone, email, carType, service, message, imageUrls },
       });
       if (error) throw error;
       toast({ title: "Üzenet elküldve!", description: "Hamarosan felvesszük Veled a kapcsolatot." });
       form.reset();
+      setSelectedService("");
+      setCustomService("");
+      setImages([]);
     } catch (err) {
       toast({ title: "Hiba", description: "Nem sikerült elküldeni az üzenetet. Próbáld újra később.", variant: "destructive" });
     } finally {
@@ -96,10 +132,20 @@ const ContactSection = () => {
               </div>
               <div>
                 <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Autó típusa
+                </label>
+                <Input name="carType" placeholder="Pl. BMW E46 320d" className="bg-card border-border focus:border-primary" />
+              </div>
+              <div>
+                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
                   Szolgáltatás
                 </label>
                 <select
-                  name="service"
+                  value={selectedService}
+                  onChange={(e) => {
+                    setSelectedService(e.target.value);
+                    if (e.target.value !== "Egyéb") setCustomService("");
+                  }}
                   className="flex h-10 w-full rounded-md border border-input bg-card px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="">Válassz szolgáltatást...</option>
@@ -108,12 +154,72 @@ const ContactSection = () => {
                   ))}
                 </select>
               </div>
+              {selectedService === "Egyéb" && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
+                    Milyen szolgáltatást keresel?
+                  </label>
+                  <Input
+                    value={customService}
+                    onChange={(e) => setCustomService(e.target.value)}
+                    placeholder="Írd le, miben segíthetünk..."
+                    className="bg-card border-border focus:border-primary"
+                  />
+                </motion.div>
+              )}
               <div>
                 <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
                   Üzenet
                 </label>
                 <Textarea name="message" placeholder="Miben segíthetünk?" rows={4} className="bg-card border-border focus:border-primary" />
               </div>
+
+              {/* Image upload */}
+              <div>
+                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
+                  Képek csatolása
+                </label>
+                <div className="space-y-3">
+                  {images.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {images.map((img, i) => (
+                        <div key={i} className="relative group">
+                          <img
+                            src={URL.createObjectURL(img)}
+                            alt={`Feltöltött kép ${i + 1}`}
+                            className="w-20 h-20 object-cover rounded border border-border"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(i)}
+                            className="absolute -top-2 -right-2 w-5 h-5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {images.length < 5 && (
+                    <label className="flex items-center gap-2 cursor-pointer text-muted-foreground hover:text-primary transition-colors font-body text-sm">
+                      <Upload className="w-4 h-4" />
+                      <span>Kép feltöltése (max. 5)</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageChange}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={loading}
@@ -137,7 +243,7 @@ const ContactSection = () => {
                 <div className="flex items-start gap-4">
                   <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                   <div>
-                    <p className="font-body text-foreground">Nagykanizsa</p>
+                    <p className="font-body text-foreground">Nagykanizsa, Egry József u. 24.</p>
                     <p className="font-body text-sm text-muted-foreground">Gyarmati István e.v.</p>
                   </div>
                 </div>
