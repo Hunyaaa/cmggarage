@@ -1,17 +1,30 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
-import { Camera, GripVertical } from "lucide-react";
+import { GripVertical, X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const galleryItems = [
-  { label: "Többlépcsős polírozás", tag: "ELŐTTE / UTÁNA" },
-  { label: "Kerámia bevonat", tag: "EREDMÉNY" },
-  { label: "PDR horpadásjavítás", tag: "ELŐTTE / UTÁNA" },
-  { label: "Fényszóró felújítás", tag: "ELŐTTE / UTÁNA" },
-  { label: "Teljes detailing", tag: "EREDMÉNY" },
-  { label: "Belső tisztítás", tag: "EREDMÉNY" },
+import horpadasBefore from "@/assets/gallery/horpadas-before.jpeg";
+import horpadasAfter from "@/assets/gallery/horpadas-after.jpeg";
+import horpiBefore from "@/assets/gallery/horpi-before.jpeg";
+import horpiAfter from "@/assets/gallery/horpi-after.jpeg";
+import polirBefore from "@/assets/gallery/polir-before.jpeg";
+import polirAfter from "@/assets/gallery/polir-after.jpeg";
+import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
+import szepAuto2 from "@/assets/gallery/szep-auto-2.jpeg";
+import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
+
+const sliderItems = [
+  { label: "PDR horpadásjavítás", before: horpadasBefore, after: horpadasAfter },
+  { label: "PDR horpadásjavítás", before: horpiBefore, after: horpiAfter },
+  { label: "Többlépcsős polírozás", before: polirBefore, after: polirAfter },
 ];
 
-const BeforeAfterSlider = ({ label, tag, index, inView }: { label: string; tag: string; index: number; inView: boolean }) => {
+const photoItems = [
+  { src: szepAuto1, label: "Nissan 350Z – Teljes detailing" },
+  { src: szepAuto2, label: "Mercedes W124 – Polírozás" },
+  { src: szepAuto3, label: "Subaru Impreza STI – Polírozás" },
+];
+
+const BeforeAfterSlider = ({ label, before, after, index, inView }: { label: string; before: string; after: string; index: number; inView: boolean }) => {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -52,21 +65,15 @@ const BeforeAfterSlider = ({ label, tag, index, inView }: { label: string; tag: 
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
       >
-        {/* "Before" side */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-muted to-card">
-          <Camera className="w-10 h-10 text-muted-foreground/40 mb-3" />
-          <p className="font-heading text-sm uppercase tracking-wider text-muted-foreground/60">ELŐTTE</p>
-          <p className="font-body text-xs text-muted-foreground/40 mt-1">{label}</p>
-        </div>
+        {/* Before image */}
+        <img src={before} alt={`${label} - Előtte`} className="absolute inset-0 w-full h-full object-cover" />
 
-        {/* "After" side - clipped */}
+        {/* After image - clipped */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-primary/10 to-card"
+          className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
         >
-          <Camera className="w-10 h-10 text-primary/50 mb-3" />
-          <p className="font-heading text-sm uppercase tracking-wider text-primary/70">UTÁNA</p>
-          <p className="font-body text-xs text-muted-foreground/60 mt-1">{label}</p>
+          <img src={after} alt={`${label} - Utána`} className="absolute inset-0 w-full h-full object-cover" />
         </div>
 
         {/* Slider line & handle */}
@@ -81,17 +88,63 @@ const BeforeAfterSlider = ({ label, tag, index, inView }: { label: string; tag: 
 
         {/* Labels */}
         <div className="absolute bottom-3 left-3 z-10">
-          <span className="text-xs font-heading uppercase tracking-wider text-muted-foreground/60 bg-background/70 px-2 py-1">Előtte</span>
+          <span className="text-xs font-heading uppercase tracking-wider text-foreground bg-background/70 px-2 py-1">Előtte</span>
         </div>
         <div className="absolute bottom-3 right-3 z-10">
-          <span className="text-xs font-heading uppercase tracking-wider text-primary/80 bg-background/70 px-2 py-1">Utána</span>
+          <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/70 px-2 py-1">Utána</span>
         </div>
       </div>
 
       {/* Tag overlay */}
       <div className="absolute top-3 left-3 z-10">
-        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">{tag}</span>
+        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">ELŐTTE / UTÁNA</span>
       </div>
+    </motion.div>
+  );
+};
+
+const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext }: {
+  images: typeof photoItems;
+  currentIndex: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center"
+      onClick={onClose}
+    >
+      <button onClick={onClose} className="absolute top-4 right-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors">
+        <X className="w-8 h-8" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        className="absolute left-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        className="absolute right-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </button>
+      <motion.img
+        key={currentIndex}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        src={images[currentIndex].src}
+        alt={images[currentIndex].label}
+        className="max-h-[90vh] max-w-[90vw] object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <p className="absolute bottom-6 text-center text-sm font-heading text-muted-foreground">
+        {images[currentIndex].label}
+      </p>
     </motion.div>
   );
 };
@@ -99,36 +152,72 @@ const BeforeAfterSlider = ({ label, tag, index, inView }: { label: string; tag: 
 const GallerySection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="py-24 bg-secondary grunge-overlay" ref={ref}>
-      <div className="container relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4">
-            GALÉRIA
-          </h2>
-          <div className="scratch-line w-32 mx-auto mb-6" />
-          <p className="font-body text-muted-foreground">
-            Munkáim – az eredmények magukért beszélnek
-          </p>
-        </motion.div>
+    <>
+      <section id="gallery" className="py-24 bg-secondary grunge-overlay" ref={ref}>
+        <div className="container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4">
+              GALÉRIA
+            </h2>
+            <div className="scratch-line w-32 mx-auto mb-6" />
+            <p className="font-body text-muted-foreground">
+              Munkáim – az eredmények magukért beszélnek
+            </p>
+          </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {galleryItems.map((item, i) => (
-            <BeforeAfterSlider key={i} label={item.label} tag={item.tag} index={i} inView={inView} />
-          ))}
+          {/* Before/After sliders row */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {sliderItems.map((item, i) => (
+              <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} index={i} inView={inView} />
+            ))}
+          </div>
+
+          {/* Photo gallery row */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {photoItems.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+                className="group relative aspect-[4/3] bg-card border border-border overflow-hidden hover:border-primary/40 transition-colors duration-300 cursor-pointer"
+                onClick={() => setLightboxIndex(i)}
+              >
+                <img src={item.src} alt={item.label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors duration-300 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-heading uppercase tracking-wider text-foreground bg-background/80 px-3 py-1.5">
+                    Nagyítás
+                  </span>
+                </div>
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">EREDMÉNY</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <p className="text-center text-xs text-muted-foreground mt-8 font-body">
-          💡 A képek placeholder-ek – cseréld ki saját fotóidra a Facebook oldaladról!
-        </p>
-      </div>
-    </section>
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            images={photoItems}
+            currentIndex={lightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+            onPrev={() => setLightboxIndex((lightboxIndex - 1 + photoItems.length) % photoItems.length)}
+            onNext={() => setLightboxIndex((lightboxIndex + 1) % photoItems.length)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
