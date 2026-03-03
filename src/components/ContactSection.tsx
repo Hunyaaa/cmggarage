@@ -249,8 +249,8 @@ const ContactSection = () => {
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <a href="tel:+36000000000" className="font-body text-foreground hover:text-primary transition-colors">
-                    Telefonszám egyeztetés alatt
+                  <a href="tel:+36304418737" className="font-body text-foreground hover:text-primary transition-colors">
+                    +36 30 441 8737
                   </a>
                 </div>
                 <div className="flex items-center gap-4">
