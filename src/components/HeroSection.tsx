@@ -19,22 +19,22 @@ const HeroSection = () => {
 
       {/* Diagonal scratches */}
       <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 100px, hsl(0 0% 30%) 100px, hsl(0 0% 30%) 101px)`,
+        backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 100px, hsl(0 0% 30%) 100px, hsl(0 0% 30%) 101px)`
       }} />
 
       <div className="relative z-10 text-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+          transition={{ duration: 0.8 }}>
+          
           {/* Logo */}
           <div className="mb-6 inline-block">
-            <img 
-              src={logo} 
-              alt="C.M.G. PDR&Carpolish logó" 
-              className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full border-2 border-primary object-cover shadow-lg shadow-primary/20"
-            />
+            <img
+              src={logo}
+              alt="C.M.G. PDR&Carpolish logó"
+              className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full border-2 border-primary object-cover shadow-lg shadow-primary/20" />
+            
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider mb-2">
@@ -47,8 +47,8 @@ const HeroSection = () => {
           <p className="font-heading text-xl md:text-2xl uppercase tracking-[0.3em] text-muted-foreground mb-2">
             Ahol az autód újjászületik
           </p>
-          <p className="font-body text-sm text-muted-foreground mb-1">
-            Nagykanizsa, Egry József u. 24.
+          <p className="font-body text-sm text-muted-foreground mb-1">Nagykanizsa, Egry József u. 7.
+
           </p>
           <p className="font-body text-sm text-muted-foreground mb-10">
             Gyarmati István e.v.
@@ -58,12 +58,12 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
+          transition={{ duration: 0.8, delay: 0.4 }}>
+          
           <button
             onClick={scrollToContact}
-            className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30"
-          >
+            className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30">
+            
             Kérj időpontot
           </button>
         </motion.div>
@@ -72,13 +72,13 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
+          className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          
           <ChevronDown className="w-6 h-6 text-muted-foreground animate-bounce" />
         </motion.div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
