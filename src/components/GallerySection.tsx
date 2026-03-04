@@ -8,19 +8,23 @@ import horpiBefore from "@/assets/gallery/horpi-before.jpeg";
 import horpiAfter from "@/assets/gallery/horpi-after.jpeg";
 import polirBefore from "@/assets/gallery/polir-before.jpeg";
 import polirAfter from "@/assets/gallery/polir-after.jpeg";
+import merciBefore from "@/assets/gallery/merci-before.jpeg";
+import merciAfter from "@/assets/gallery/merci-after.jpeg";
 import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
-import szepAuto2 from "@/assets/gallery/szep-auto-2.jpeg";
 import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
 
 const sliderItems = [
-  { label: "PDR horpadásjavítás", before: horpadasBefore, after: horpadasAfter },
-  { label: "PDR horpadásjavítás", before: horpiBefore, after: horpiAfter },
-  { label: "Többlépcsős polírozás", before: polirBefore, after: polirAfter },
+  { label: "PDR horpadásjavítás", before: horpadasAfter, after: horpadasBefore },
+  { label: "PDR horpadásjavítás", before: horpiAfter, after: horpiBefore },
+  { label: "Többlépcsős polírozás", before: polirAfter, after: polirBefore },
+];
+
+const sliderItemsRow2 = [
+  { label: "Mercedes – Polírozás", before: merciBefore, after: merciAfter },
 ];
 
 const photoItems = [
   { src: szepAuto1, label: "Nissan 350Z – Teljes detailing" },
-  { src: szepAuto2, label: "Mercedes W124 – Polírozás" },
   { src: szepAuto3, label: "Subaru Impreza STI – Polírozás" },
 ];
 
@@ -180,8 +184,11 @@ const GallerySection = () => {
             ))}
           </div>
 
-          {/* Photo gallery row */}
+          {/* Row 2: 1 slider + 2 photos */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            {sliderItemsRow2.map((item, i) => (
+              <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} index={i + 3} inView={inView} />
+            ))}
             {photoItems.map((item, i) => (
               <motion.div
                 key={i}
