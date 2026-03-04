@@ -5,6 +5,7 @@ import logo from "@/assets/logo.jpeg";
 const links = [
   { label: "Főoldal", href: "#hero" },
   { label: "Rólam", href: "#about" },
+  { label: "Hogyan működik?", href: "#how-it-works" },
   { label: "Szolgáltatások", href: "#services" },
   { label: "Galéria", href: "#gallery" },
   { label: "Árlista", href: "#pricing" },
