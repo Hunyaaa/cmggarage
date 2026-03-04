@@ -14,13 +14,13 @@ import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
 import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
 
 const sliderItems = [
-{ label: "PDR horpadásjavítás – fényezés nélkül javítva", before: horpadasAfter, after: horpadasBefore },
-{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", before: horpiAfter, after: horpiBefore },
-{ label: "Többlépcsős polírozás – tükörfényes eredmény", before: polirAfter, after: polirBefore }];
+{ label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "FORD KORREKCIÓS POLÍR", before: horpadasAfter, after: horpadasBefore },
+{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "FORD KORREKCIÓS POLÍR", before: horpiAfter, after: horpiBefore },
+{ label: "Többlépcsős polírozás – tükörfényes eredmény", tag: "FORD KORREKCIÓS POLÍR", before: polirAfter, after: polirBefore }];
 
 
 const sliderItemsRow2 = [
-{ label: "Mercedes – korrekciós polírozás, showroom fény", before: merciAfter, after: merciBefore }];
+{ label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore }];
 
 
 const photoItems = [
