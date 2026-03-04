@@ -180,7 +180,7 @@ const GallerySection = () => {
           {/* Before/After sliders row */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {sliderItems.map((item, i) =>
-            <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} index={i} inView={inView} />
+            <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i} inView={inView} />
             )}
           </div>
 
