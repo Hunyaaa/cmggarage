@@ -20,12 +20,12 @@ const sliderItems = [
 ];
 
 const sliderItemsRow2 = [
-  { label: "Mercedes – Polírozás", before: merciAfter, after: merciBefore },
+  { label: "Mercedes – korrekciós polírozás, showroom fény", before: merciAfter, after: merciBefore },
 ];
 
 const photoItems = [
-  { src: szepAuto1, label: "Nissan 350Z – Teljes detailing" },
-  { src: szepAuto3, label: "Subaru Impreza STI – Polírozás" },
+  { src: szepAuto1, label: "Nissan 350Z – Teljes detailing és fényezéskorrekció" },
+  { src: szepAuto3, label: "Subaru Impreza STI – Prémium polírozás Nagykanizsán" },
 ];
 
 const BeforeAfterSlider = ({ label, before, after, index, inView }: { label: string; before: string; after: string; index: number; inView: boolean }) => {
