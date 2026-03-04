@@ -90,45 +90,46 @@ const WhyChooseUsSection = () => {
           ))}
         </div>
 
-        {/* Review 1 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-12 bg-card border border-border p-8 max-w-2xl mx-auto text-center"
-        >
-          <div className="flex justify-center gap-1 mb-3">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-primary fill-primary" />
-            ))}
-          </div>
-          <blockquote className="font-body text-foreground italic leading-relaxed mb-3">
-            „Amikor megláttam a végeredményt alig hittem a szememnek! 6 éve van nálunk az autó, de amikor megvettük még akkor sem volt ilyen szép! Köszönjük szépen Pisti a gyors és korrekt munkát! :)"
-          </blockquote>
-          <p className="font-heading text-sm uppercase tracking-wider text-muted-foreground">
-            – Elégedett ügyfél, Nagykanizsa
-          </p>
-        </motion.div>
+        {/* Reviews side by side */}
+        <div className="mt-12 grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="bg-card border border-border p-8 text-center"
+          >
+            <div className="flex justify-center gap-1 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+              ))}
+            </div>
+            <blockquote className="font-body text-foreground italic leading-relaxed mb-3">
+              „Amikor megláttam a végeredményt alig hittem a szememnek! 6 éve van nálunk az autó, de amikor megvettük még akkor sem volt ilyen szép! Köszönjük szépen Pisti a gyors és korrekt munkát! :)"
+            </blockquote>
+            <p className="font-heading text-sm uppercase tracking-wider text-muted-foreground">
+              – Elégedett ügyfél, Nagykanizsa
+            </p>
+          </motion.div>
 
-        {/* Review 2 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.85 }}
-          className="mt-6 bg-card border border-border p-8 max-w-2xl mx-auto text-center"
-        >
-          <div className="flex justify-center gap-1 mb-3">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-primary fill-primary" />
-            ))}
-          </div>
-          <blockquote className="font-body text-foreground italic leading-relaxed mb-3">
-            „Pár napja kapuk vissza a VOLKSWAGEN TOURAN kocsinkat. Eszméletlenül gyönyörű lett. Mindenki megcsodálja. Ilyen precíz munkával ritkán találkozik az ember. István munkájával 100%-ban elégedettek vagyunk és ahol lehet ajánljuk Őt. 5*"
-          </blockquote>
-          <p className="font-heading text-sm uppercase tracking-wider text-muted-foreground">
-            – Elégedett ügyfél, Nagykanizsa
-          </p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.85 }}
+            className="bg-card border border-border p-8 text-center"
+          >
+            <div className="flex justify-center gap-1 mb-3">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+              ))}
+            </div>
+            <blockquote className="font-body text-foreground italic leading-relaxed mb-3">
+              „Pár napja kapuk vissza a VOLKSWAGEN TOURAN kocsinkat. Eszméletlenül gyönyörű lett. Mindenki megcsodálja. Ilyen precíz munkával ritkán találkozik az ember. István munkájával 100%-ban elégedettek vagyunk és ahol lehet ajánljuk Őt. 5*"
+            </blockquote>
+            <p className="font-heading text-sm uppercase tracking-wider text-muted-foreground">
+              – Elégedett ügyfél, Nagykanizsa
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
