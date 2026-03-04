@@ -43,24 +43,24 @@ const HeroSection = () => {
           
           <div className="scratch-line w-48 mx-auto my-6" />
           
-          <p className="font-heading text-xl md:text-2xl uppercase tracking-[0.3em] text-muted-foreground mb-4">
+          <p className="font-heading text-xl md:text-2xl uppercase tracking-[0.3em] text-foreground mb-4">
             Prémium autópolírozás és PDR horpadásjavítás Nagykanizsán
           </p>
-          <p className="font-body text-base text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
+          <p className="font-body text-base text-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
             Fényezés nélküli horpadásjavítás, professzionális polírozás, kerámia bevonat és jégkár javítás – egy helyen, szakértő kézzel.
           </p>
 
           {/* Trust indicators */}
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10">
-            <span className="flex items-center gap-1.5 font-body text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5 font-body text-sm text-foreground">
               <CheckCircle className="w-4 h-4 text-primary" />
               Gyári fényezés megőrzése
             </span>
-            <span className="flex items-center gap-1.5 font-body text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5 font-body text-sm text-foreground">
               <CheckCircle className="w-4 h-4 text-primary" />
               Gyors kivitelezés
             </span>
-            <span className="flex items-center gap-1.5 font-body text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5 font-body text-sm text-foreground">
               <CheckCircle className="w-4 h-4 text-primary" />
               Több száz javított autó
             </span>
