@@ -91,7 +91,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
           className="mt-16">
-          <p className="font-body text-xs text-muted-foreground mb-1">Nagykanizsa, Egry József u. 7. · Gyarmati István e.v.</p>
+          <p className="font-body text-xs text-foreground mb-1">Nagykanizsa, Egry József u. 7. · Gyarmati István e.v.</p>
           <ChevronDown className="w-6 h-6 text-muted-foreground animate-bounce mx-auto mt-4" />
         </motion.div>
       </div>
