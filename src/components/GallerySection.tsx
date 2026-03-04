@@ -101,7 +101,7 @@ const BeforeAfterSlider = ({ label, before, after, tag, index, inView }: {label:
 
       {/* Tag overlay */}
       <div className="absolute top-3 left-3 z-10">
-        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">FORD KORREKCIÓS POLÍR</span>
+        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">{tag}</span>
       </div>
     </motion.div>);
 
