@@ -14,8 +14,8 @@ import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
 import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
 
 const sliderItems = [
-{ label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "FORD KORREKCIÓS POLÍR", before: horpadasAfter, after: horpadasBefore },
-{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "FORD KORREKCIÓS POLÍR", before: horpiAfter, after: horpiBefore },
+{ label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
+{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
 { label: "Többlépcsős polírozás – tükörfényes eredmény", tag: "FORD KORREKCIÓS POLÍR", before: polirAfter, after: polirBefore }];
 
 
