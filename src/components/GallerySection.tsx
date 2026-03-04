@@ -14,18 +14,18 @@ import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
 import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
 
 const sliderItems = [
-  { label: "PDR horpadásjavítás", before: horpadasAfter, after: horpadasBefore },
-  { label: "PDR horpadásjavítás", before: horpiAfter, after: horpiBefore },
-  { label: "Többlépcsős polírozás", before: polirAfter, after: polirBefore },
+  { label: "PDR horpadásjavítás – fényezés nélkül javítva", before: horpadasAfter, after: horpadasBefore },
+  { label: "PDR horpadásjavítás – gyári állapot visszaállítva", before: horpiAfter, after: horpiBefore },
+  { label: "Többlépcsős polírozás – tükörfényes eredmény", before: polirAfter, after: polirBefore },
 ];
 
 const sliderItemsRow2 = [
-  { label: "Mercedes – Polírozás", before: merciAfter, after: merciBefore },
+  { label: "Mercedes – korrekciós polírozás, showroom fény", before: merciAfter, after: merciBefore },
 ];
 
 const photoItems = [
-  { src: szepAuto1, label: "Nissan 350Z – Teljes detailing" },
-  { src: szepAuto3, label: "Subaru Impreza STI – Polírozás" },
+  { src: szepAuto1, label: "Nissan 350Z – Teljes detailing és fényezéskorrekció" },
+  { src: szepAuto3, label: "Subaru Impreza STI – Prémium polírozás Nagykanizsán" },
 ];
 
 const BeforeAfterSlider = ({ label, before, after, index, inView }: { label: string; before: string; after: string; index: number; inView: boolean }) => {

@@ -102,6 +102,9 @@ const ContactSection = () => {
           
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4">KAPCSOLAT</h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
+          <p className="font-body text-muted-foreground max-w-xl mx-auto">
+            Küldj fotót az autó sérüléséről és rövid időn belül árajánlatot adunk. Gyors válaszidő, rejtett költségek nélkül.
+          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
