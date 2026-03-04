@@ -20,7 +20,7 @@ const sliderItems = [
 ];
 
 const sliderItemsRow2 = [
-  { label: "Mercedes – Polírozás", before: merciBefore, after: merciAfter },
+  { label: "Mercedes – Polírozás", before: merciAfter, after: merciBefore },
 ];
 
 const photoItems = [
