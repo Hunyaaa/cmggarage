@@ -28,7 +28,7 @@ const photoItems = [
 { src: szepAuto3, label: "Subaru Impreza STI – Prémium polírozás Nagykanizsán" }];
 
 
-const BeforeAfterSlider = ({ label, before, after, index, inView }: {label: string;before: string;after: string;index: number;inView: boolean;}) => {
+const BeforeAfterSlider = ({ label, before, after, tag, index, inView }: {label: string;before: string;after: string;tag: string;index: number;inView: boolean;}) => {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
