@@ -187,7 +187,7 @@ const GallerySection = () => {
           {/* Row 2: 1 slider + 2 photos */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {sliderItemsRow2.map((item, i) =>
-            <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} index={i + 3} inView={inView} />
+            <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i + 3} inView={inView} />
             )}
             {photoItems.map((item, i) =>
             <motion.div
