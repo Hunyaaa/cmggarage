@@ -14,13 +14,13 @@ import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
 import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
 
 const sliderItems = [
-{ label: "PDR horpadásjavítás – fényezés nélkül javítva", before: horpadasAfter, after: horpadasBefore },
-{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", before: horpiAfter, after: horpiBefore },
-{ label: "Többlépcsős polírozás – tükörfényes eredmény", before: polirAfter, after: polirBefore }];
+{ label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "FORD KORREKCIÓS POLÍR", before: horpadasAfter, after: horpadasBefore },
+{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "FORD KORREKCIÓS POLÍR", before: horpiAfter, after: horpiBefore },
+{ label: "Többlépcsős polírozás – tükörfényes eredmény", tag: "FORD KORREKCIÓS POLÍR", before: polirAfter, after: polirBefore }];
 
 
 const sliderItemsRow2 = [
-{ label: "Mercedes – korrekciós polírozás, showroom fény", before: merciAfter, after: merciBefore }];
+{ label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore }];
 
 
 const photoItems = [
@@ -28,7 +28,7 @@ const photoItems = [
 { src: szepAuto3, label: "Subaru Impreza STI – Prémium polírozás Nagykanizsán" }];
 
 
-const BeforeAfterSlider = ({ label, before, after, index, inView }: {label: string;before: string;after: string;index: number;inView: boolean;}) => {
+const BeforeAfterSlider = ({ label, before, after, tag, index, inView }: {label: string;before: string;after: string;tag: string;index: number;inView: boolean;}) => {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -101,7 +101,7 @@ const BeforeAfterSlider = ({ label, before, after, index, inView }: {label: stri
 
       {/* Tag overlay */}
       <div className="absolute top-3 left-3 z-10">
-        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">FORD KORREKCIÓS POLÍR</span>
+        <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">{tag}</span>
       </div>
     </motion.div>);
 
@@ -180,14 +180,14 @@ const GallerySection = () => {
           {/* Before/After sliders row */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {sliderItems.map((item, i) =>
-            <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} index={i} inView={inView} />
+            <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i} inView={inView} />
             )}
           </div>
 
           {/* Row 2: 1 slider + 2 photos */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {sliderItemsRow2.map((item, i) =>
-            <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} index={i + 3} inView={inView} />
+            <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i + 3} inView={inView} />
             )}
             {photoItems.map((item, i) =>
             <motion.div
