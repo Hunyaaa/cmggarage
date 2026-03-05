@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { name, phone, email, service, message } = await req.json();
+    const { name, phone, email, carType, service, message, imageUrls } = await req.json();
 
     if (!name || !phone) {
       return new Response(
@@ -26,14 +26,19 @@ Deno.serve(async (req) => {
       throw new Error("RESEND_API_KEY not configured");
     }
 
+    const imageSection = imageUrls && imageUrls.length > 0
+      ? `\nCsatolt képek:\n${imageUrls.map((url: string, i: number) => `  ${i + 1}. ${url}`).join("\n")}`
+      : "";
+
     const emailBody = `
 Új üzenet a CMG weboldalról:
 
 Név: ${name}
 Telefon: ${phone}
 Email: ${email || "Nincs megadva"}
+Autó típusa: ${carType || "Nincs megadva"}
 Szolgáltatás: ${service || "Nincs kiválasztva"}
-Üzenet: ${message || "Nincs üzenet"}
+Üzenet: ${message || "Nincs üzenet"}${imageSection}
     `.trim();
 
     const res = await fetch("https://api.resend.com/emails", {
@@ -44,7 +49,7 @@ Szolgáltatás: ${service || "Nincs kiválasztva"}
       },
       body: JSON.stringify({
         from: "CMG Carpolish <onboarding@resend.dev>",
-        to: ["hunyadimate078@gmail.com"],
+        to: ["info@cmggarage.hu"],
         subject: `Új megkeresés: ${name} – ${service || "Általános"}`,
         text: emailBody,
       }),
