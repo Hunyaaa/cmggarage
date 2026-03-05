@@ -6,26 +6,26 @@ import horpadasBefore from "@/assets/gallery/horpadas-before.jpeg";
 import horpadasAfter from "@/assets/gallery/horpadas-after.jpeg";
 import horpiBefore from "@/assets/gallery/horpi-before.jpeg";
 import horpiAfter from "@/assets/gallery/horpi-after.jpeg";
-import polirBefore from "@/assets/gallery/polir-before.jpeg";
-import polirAfter from "@/assets/gallery/polir-after.jpeg";
 import merciBefore from "@/assets/gallery/merci-before.jpeg";
 import merciAfter from "@/assets/gallery/merci-after.jpeg";
-import szepAuto1 from "@/assets/gallery/szep-auto-1.jpeg";
-import szepAuto3 from "@/assets/gallery/szep-auto-3.jpeg";
+import tetoHorpadasBefore from "@/assets/gallery/teto-horpadas-before.jpeg";
+import tetoHorpadasAfter from "@/assets/gallery/teto-horpadas-after.jpeg";
+import nissan350zBefore from "@/assets/gallery/350z-before.jpeg";
+import nissan350zAfter from "@/assets/gallery/350z-after.jpeg";
+import lampaBefore from "@/assets/gallery/lampa-before.jpeg";
+import lampaAfter from "@/assets/gallery/lampa-after.jpeg";
 
-const sliderItems = [
-{ label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
-{ label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
-{ label: "Többlépcsős polírozás – tükörfényes eredmény", tag: "FORD KORREKCIÓS POLÍR", before: polirAfter, after: polirBefore }];
-
+const sliderItemsRow1 = [
+  { label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
+  { label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
+  { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
+];
 
 const sliderItemsRow2 = [
-{ label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore }];
-
-
-const photoItems = [
-{ src: szepAuto1, label: "Nissan 350Z – Teljes detailing és fényezéskorrekció" },
-{ src: szepAuto3, label: "Subaru Impreza STI – Prémium polírozás Nagykanizsán" }];
+  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasBefore, after: tetoHorpadasAfter },
+  { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zBefore, after: nissan350zAfter },
+  { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaBefore, after: lampaAfter },
+];
 
 
 const BeforeAfterSlider = ({ label, before, after, tag, index, inView }: {label: string;before: string;after: string;tag: string;index: number;inView: boolean;}) => {
