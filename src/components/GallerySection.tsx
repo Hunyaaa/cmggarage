@@ -22,9 +22,9 @@ const sliderItemsRow1 = [
 ];
 
 const sliderItemsRow2 = [
-  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasBefore, after: tetoHorpadasAfter },
-  { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zBefore, after: nissan350zAfter },
-  { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaBefore, after: lampaAfter },
+  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
+  { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
+  { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaAfter, after: lampaBefore },
 ];
 
 
