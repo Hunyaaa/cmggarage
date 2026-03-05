@@ -6,6 +6,10 @@ import horpadasBefore from "@/assets/gallery/horpadas-before.jpeg";
 import horpadasAfter from "@/assets/gallery/horpadas-after.jpeg";
 import horpiBefore from "@/assets/gallery/horpi-before.jpeg";
 import horpiAfter from "@/assets/gallery/horpi-after.jpeg";
+import mgjegkarBefore from "@/assets/gallery/mgjegkar-before.jpeg";
+import mgjegkarAfter from "@/assets/gallery/mgjegkar-after.png";
+import volvoBefore from "@/assets/gallery/volvo-before.jpeg";
+import volvoAfter from "@/assets/gallery/volvo-after.jpeg";
 import merciBefore from "@/assets/gallery/merci-before.jpeg";
 import merciAfter from "@/assets/gallery/merci-after.jpeg";
 import tetoHorpadasBefore from "@/assets/gallery/teto-horpadas-before.jpeg";
@@ -17,14 +21,14 @@ import lampaAfter from "@/assets/gallery/lampa-after.jpeg";
 
 const sliderItemsRow1 = [
   { label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
-  { label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
+  { label: "MG jégkár – PDR technológiával javítva", tag: "MG JÉGKÁR", before: mgjegkarBefore, after: mgjegkarAfter },
   { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
 ];
 
 const sliderItemsRow2 = [
   { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
   { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
-  { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaAfter, after: lampaBefore },
+  { label: "Volvo fényszóró felújítás – kristálytiszta eredmény", tag: "VOLVO LÁMPAFELÚJÍTÁS", before: volvoBefore, after: volvoAfter },
 ];
 
 
