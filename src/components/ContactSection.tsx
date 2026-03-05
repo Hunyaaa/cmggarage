@@ -37,59 +37,56 @@ const ContactSection = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const name = (formData.get("name") as string)?.trim();
-    const phone = (formData.get("phone") as string)?.trim();
-    const email = (formData.get("email") as string)?.trim();
-    const carType = (formData.get("carType") as string)?.trim();
-    const message = (formData.get("message") as string)?.trim();
-    const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
+  e.preventDefault();
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+  
+  const name = (formData.get("name") as string)?.trim();
+  const phone = (formData.get("phone") as string)?.trim();
+  const email = (formData.get("email") as string)?.trim();
+  const carType = (formData.get("carType") as string)?.trim();
+  const message = (formData.get("message") as string)?.trim();
+  const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
 
-    if (!name || !phone) {
-      toast({ title: "Hiba", description: "Kérjük, töltsd ki a kötelező mezőket (Név, Telefon).", variant: "destructive" });
-      return;
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast({ title: "Hiba", description: "Érvénytelen e-mail cím.", variant: "destructive" });
-      return;
-    }
+  setLoading(true);
 
-    setLoading(true);
-    try {
-      // Upload images if any
-      const imageUrls: string[] = [];
-      for (const img of images) {
-        const fileName = `${Date.now()}-${img.name}`;
-        const { data, error: uploadError } = await supabase.storage.
-        from("contact-images").
-        upload(fileName, img);
-        if (uploadError) {
-          console.error("Upload error:", uploadError);
-        } else if (data) {
-          const { data: urlData } = supabase.storage.
-          from("contact-images").
-          getPublicUrl(data.path);
-          imageUrls.push(urlData.publicUrl);
-        }
-      }
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer re_fhVFHSV7_NgzDgAta8HNo3f1GXsckJVrD`, // Az API kulcsod
+      },
+      body: JSON.stringify({
+        from: "CMG Garage <info@cmggarage.hu>", // Ezzel küldesz
+        to: ["info@cmggarage.hu"], // Ide érkezik (és az ImprovisMX továbbítja)
+        reply_to: email || undefined, // Így tudsz válaszolni az ügyfélnek
+        subject: `Új ajánlatkérés: ${name} - ${service}`,
+        html: `
+          <div style="font-family: sans-serif; line-height: 1.5;">
+            <h2>Új megkeresés érkezett a weboldalról</h2>
+            <p><strong>Név:</strong> ${name}</p>
+            <p><strong>Telefon:</strong> ${phone}</p>
+            <p><strong>Email:</strong> ${email || "Nincs megadva"}</p>
+            <hr />
+            <p><strong>Autó típusa:</strong> ${carType || "Nincs megadva"}</p>
+            <p><strong>Szolgáltatás:</strong> ${service}</p>
+            <p><strong>Üzenet:</strong><br />${message || "Nincs üzenet"}</p>
+          </div>
+        `,
+      }),
+    });
 
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: { name, phone, email, carType, service, message, imageUrls }
-      });
-      if (error) throw error;
-      toast({ title: "Üzenet elküldve!", description: "Hamarosan felvesszük Veled a kapcsolatot." });
-      form.reset();
-      setSelectedService("");
-      setCustomService("");
-      setImages([]);
-    } catch (err) {
-      toast({ title: "Hiba", description: "Nem sikerült elküldeni az üzenetet. Próbáld újra később.", variant: "destructive" });
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (!response.ok) throw new Error("Hiba a küldés során");
+
+    toast({ title: "Sikeres küldés!", description: "Hamarosan keresünk a megadott elérhetőségeken." });
+    form.reset();
+  } catch (err) {
+    toast({ title: "Hiba", description: "Próbáld újra később.", variant: "destructive" });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section id="contact" className="py-24 bg-background grunge-overlay" ref={ref}>
