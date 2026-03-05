@@ -37,56 +37,41 @@ const ContactSection = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const form = e.currentTarget;
-  const formData = new FormData(form);
-  
-  const name = (formData.get("name") as string)?.trim();
-  const phone = (formData.get("phone") as string)?.trim();
-  const email = (formData.get("email") as string)?.trim();
-  const carType = (formData.get("carType") as string)?.trim();
-  const message = (formData.get("message") as string)?.trim();
-  const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const name = (formData.get("name") as string)?.trim();
+    const phone = (formData.get("phone") as string)?.trim();
+    const email = (formData.get("email") as string)?.trim();
+    const carType = (formData.get("carType") as string)?.trim();
+    const message = (formData.get("message") as string)?.trim();
+    const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer re_fhVFHSV7_NgzDgAta8HNo3f1GXsckJVrD`, // Az API kulcsod
-      },
-      body: JSON.stringify({
-        from: "CMG Garage <info@cmggarage.hu>", // Ezzel küldesz
-        to: ["info@cmggarage.hu"], // Ide érkezik (és az ImprovisMX továbbítja)
-        reply_to: email || undefined, // Így tudsz válaszolni az ügyfélnek
-        subject: `Új ajánlatkérés: ${name} - ${service}`,
-        html: `
-          <div style="font-family: sans-serif; line-height: 1.5;">
-            <h2>Új megkeresés érkezett a weboldalról</h2>
-            <p><strong>Név:</strong> ${name}</p>
-            <p><strong>Telefon:</strong> ${phone}</p>
-            <p><strong>Email:</strong> ${email || "Nincs megadva"}</p>
-            <hr />
-            <p><strong>Autó típusa:</strong> ${carType || "Nincs megadva"}</p>
-            <p><strong>Szolgáltatás:</strong> ${service}</p>
-            <p><strong>Üzenet:</strong><br />${message || "Nincs üzenet"}</p>
-          </div>
-        `,
-      }),
-    });
+    try {
+      // Itt már a saját szerveredet hívod, nem a Resendet közvetlenül
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, phone, email, carType, service, message }),
+      });
 
-    if (!response.ok) throw new Error("Hiba a küldés során");
+      if (!response.ok) throw new Error("Hiba a küldés során");
 
-    toast({ title: "Sikeres küldés!", description: "Hamarosan keresünk a megadott elérhetőségeken." });
-    form.reset();
-  } catch (err) {
-    toast({ title: "Hiba", description: "Próbáld újra később.", variant: "destructive" });
-  } finally {
-    setLoading(false);
-  }
-};
+      toast({ title: "Sikeres küldés!", description: "Hamarosan keresünk a megadott elérhetőségeken." });
+      form.reset();
+      setImages([]); // Képek ürítése
+      setSelectedService("");
+    } catch (err) {
+      toast({ title: "Hiba", description: "Próbáld újra később.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 bg-background grunge-overlay" ref={ref}>
