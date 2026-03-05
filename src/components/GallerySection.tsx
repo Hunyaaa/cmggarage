@@ -18,11 +18,11 @@ import lampaAfter from "@/assets/gallery/lampa-after.jpeg";
 const sliderItemsRow1 = [
   { label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
   { label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
-  { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
+  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
 ];
 
 const sliderItemsRow2 = [
-  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
+  { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
   { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
   { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaAfter, after: lampaBefore },
 ];
