@@ -27,7 +27,7 @@ export async function sendEmail(formData: FormData) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'CMG Garage <onboarding@resend.dev>', // Ha igazoltad a domaint: info@cmggarage.hu
+      from: 'CMG Garage <info@cmggarage.hu>', // Ha igazoltad a domaint: info@cmggarage.hu
       to: ['info@cmggarage.hu'],
       reply_to: email,
       subject: `Új ajánlatkérés: ${name} - ${service}`,
