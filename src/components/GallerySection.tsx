@@ -177,53 +177,21 @@ const GallerySection = () => {
             </p>
           </motion.div>
 
-          {/* Before/After sliders row */}
+          {/* Row 1 */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {sliderItems.map((item, i) =>
+            {sliderItemsRow1.map((item, i) =>
             <BeforeAfterSlider key={i} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i} inView={inView} />
             )}
           </div>
 
-          {/* Row 2: 1 slider + 2 photos */}
+          {/* Row 2 */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {sliderItemsRow2.map((item, i) =>
             <BeforeAfterSlider key={`r2-${i}`} label={item.label} before={item.before} after={item.after} tag={item.tag} index={i + 3} inView={inView} />
             )}
-            {photoItems.map((item, i) =>
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-              className="group relative aspect-[4/3] bg-card border border-border overflow-hidden hover:border-primary/40 transition-colors duration-300 cursor-pointer"
-              onClick={() => setLightboxIndex(i)}>
-              
-                <img src={item.src} alt={item.label} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors duration-300 flex items-center justify-center">
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs font-heading uppercase tracking-wider text-foreground bg-background/80 px-3 py-1.5">
-                    Nagyítás
-                  </span>
-                </div>
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="text-xs font-heading uppercase tracking-wider text-primary bg-background/80 px-2 py-1">EREDMÉNY</span>
-                </div>
-              </motion.div>
-            )}
           </div>
         </div>
       </section>
-
-      <AnimatePresence>
-        {lightboxIndex !== null &&
-        <Lightbox
-          images={photoItems}
-          currentIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-          onPrev={() => setLightboxIndex((lightboxIndex - 1 + photoItems.length) % photoItems.length)}
-          onNext={() => setLightboxIndex((lightboxIndex + 1) % photoItems.length)} />
-
-        }
-      </AnimatePresence>
     </>);
 
 };
