@@ -107,56 +107,9 @@ const BeforeAfterSlider = ({ label, before, after, tag, index, inView }: {label:
 
 };
 
-const Lightbox = ({ images, currentIndex, onClose, onPrev, onNext
-
-
-
-
-
-}: {images: typeof photoItems;currentIndex: number;onClose: () => void;onPrev: () => void;onNext: () => void;}) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center"
-      onClick={onClose}>
-      
-      <button onClick={onClose} className="absolute top-4 right-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors">
-        <X className="w-8 h-8" />
-      </button>
-      <button
-        onClick={(e) => {e.stopPropagation();onPrev();}}
-        className="absolute left-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors">
-        
-        <ChevronLeft className="w-8 h-8" />
-      </button>
-      <button
-        onClick={(e) => {e.stopPropagation();onNext();}}
-        className="absolute right-4 z-50 p-2 text-muted-foreground hover:text-foreground transition-colors">
-        
-        <ChevronRight className="w-8 h-8" />
-      </button>
-      <motion.img
-        key={currentIndex}
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        src={images[currentIndex].src}
-        alt={images[currentIndex].label}
-        className="max-h-[90vh] max-w-[90vw] object-contain"
-        onClick={(e) => e.stopPropagation()} />
-      
-      <p className="absolute bottom-6 text-center text-sm font-heading text-muted-foreground">
-        {images[currentIndex].label}
-      </p>
-    </motion.div>);
-
-};
-
 const GallerySection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <>
