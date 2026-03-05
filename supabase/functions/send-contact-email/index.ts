@@ -1,74 +1,54 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+'use server';
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
+import { Resend } from 'resend';
 
-Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+// Ide ne írd be a kulcsot, a Vercel Environment Variables-be tedd!
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function sendEmail(formData: FormData) {
+  const name = formData.get('name') as string;
+  const phone = formData.get('phone') as string;
+  const email = formData.get('email') as string;
+  const carType = formData.get('car_type') as string;
+  const service = formData.get('service') as string;
+  const message = formData.get('message') as string;
+  
+  // Képek kezelése (ha vannak feltöltve)
+  const files = formData.getAll('images') as File[];
+  
+  const attachments = await Promise.all(
+    files
+      .filter((file) => file.size > 0)
+      .map(async (file) => ({
+        filename: file.name,
+        content: Buffer.from(await file.arrayBuffer()),
+      }))
+  );
 
   try {
-    const { name, phone, email, carType, service, message, imageUrls } = await req.json();
-
-    if (!name || !phone) {
-      return new Response(
-        JSON.stringify({ error: "Név és telefon kötelező." }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY not configured");
-    }
-
-    const imageSection = imageUrls && imageUrls.length > 0
-      ? `\nCsatolt képek:\n${imageUrls.map((url: string, i: number) => `  ${i + 1}. ${url}`).join("\n")}`
-      : "";
-
-    const emailBody = `
-Új üzenet a CMG weboldalról:
-
-Név: ${name}
-Telefon: ${phone}
-Email: ${email || "Nincs megadva"}
-Autó típusa: ${carType || "Nincs megadva"}
-Szolgáltatás: ${service || "Nincs kiválasztva"}
-Üzenet: ${message || "Nincs üzenet"}${imageSection}
-    `.trim();
-
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "CMG Carpolish <onboarding@resend.dev>",
-        to: ["info@cmggarage.hu"],
-        subject: `Új megkeresés: ${name} – ${service || "Általános"}`,
-        text: emailBody,
-      }),
+    const { data, error } = await resend.emails.send({
+      from: 'CMG Garage <onboarding@resend.dev>', // Ha igazoltad a domaint: info@cmggarage.hu
+      to: ['info@cmggarage.hu'],
+      reply_to: email,
+      subject: `Új ajánlatkérés: ${name} - ${service}`,
+      attachments: attachments,
+      html: `
+        <h2>Új üzenet érkezett a weboldalról</h2>
+        <p><strong>Név:</strong> ${name}</p>
+        <p><strong>Telefon:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Autó típusa:</strong> ${carType}</p>
+        <p><strong>Szolgáltatás:</strong> ${service}</p>
+        <p><strong>Üzenet:</strong><br/>${message}</p>
+      `,
     });
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(JSON.stringify(data));
+    if (error) {
+      return { success: false, error };
     }
 
-    return new Response(
-      JSON.stringify({ success: true }),
-      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
-  } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return { success: true };
+  } catch (err) {
+    return { success: false, error: err };
   }
-});
+}
