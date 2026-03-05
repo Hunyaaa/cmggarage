@@ -28,7 +28,7 @@ const sliderItemsRow1 = [
 const sliderItemsRow2 = [
   { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
   { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
-  { label: "BMW fényszóró felújítás – kristálytiszta eredmény", tag: "BMW FÉNYSZÓRÓ FELÚJÍTÁS", before: lampaAfter, after: lampaBefore },
+  { label: "Volvo fényszóró felújítás – kristálytiszta eredmény", tag: "VOLVO LÁMPAFELÚJÍTÁS", before: volvoBefore, after: volvoAfter },
 ];
 
 
