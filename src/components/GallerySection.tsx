@@ -21,7 +21,7 @@ import lampaAfter from "@/assets/gallery/lampa-after.jpeg";
 
 const sliderItemsRow1 = [
   { label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
-  { label: "PDR horpadásjavítás – gyári állapot visszaállítva", tag: "JÉGKÁRJAVÍTÁS", before: horpiAfter, after: horpiBefore },
+  { label: "MG jégkár – PDR technológiával javítva", tag: "MG JÉGKÁR", before: mgjegkarBefore, after: mgjegkarAfter },
   { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
 ];
 
