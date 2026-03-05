@@ -1,6 +1,6 @@
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useCallback } from "react";
-import { GripVertical, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { GripVertical } from "lucide-react";
 
 import horpadasBefore from "@/assets/gallery/horpadas-before.jpeg";
 import horpadasAfter from "@/assets/gallery/horpadas-after.jpeg";
