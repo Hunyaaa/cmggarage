@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 import { GripVertical } from "lucide-react";
 
 import horpadasBefore from "@/assets/gallery/horpadas-before.jpeg";
