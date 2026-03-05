@@ -48,48 +48,54 @@ const ContactSection = () => {
     const service = selectedService === "Egyéb" ? `Egyéb: ${customService}` : selectedService;
 
     if (!name || !phone) {
-      toast({ title: "Hiba", description: "A név és a telefon kitöltése kötelező.", variant: "destructive" });
+      toast({ title: "Hiba", description: "A név és a telefon kötelező.", variant: "destructive" });
       return;
     }
 
     setLoading(true);
 
     try {
-      // Ez a hívás a Vercel saját szerverfunkcióját keresi
       const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, email, carType, service, message }),
       });
 
-      if (!response.ok) throw new Error("Hiba a küldés során");
+      const result = await response.json();
 
-      toast({ title: "Sikeres küldés!", description: "Hamarosan keresünk a megadott elérhetőségeken." });
+      if (!response.ok) {
+        throw new Error(result.error || "Hiba a küldés során");
+      }
+
+      toast({ title: "Sikeres küldés!", description: "Hamarosan keresünk!" });
       form.reset();
-      setImages([]); 
+      setImages([]);
       setSelectedService("");
-    } catch (err) {
-      toast({ title: "Hiba", description: "Nem sikerült elküldeni az üzenetet. Próbáld újra később.", variant: "destructive" });
+    } catch (err: any) {
+      console.error("Küldési hiba:", err);
+      toast({ 
+        title: "Hiba", 
+        description: "Nem sikerült elküldeni. Próbáld újra később!", 
+        variant: "destructive" 
+      });
     } finally {
-      setLoading(false);
+      setLoading(false); // Gomb visszakapcsolása mindenképpen
     }
   };
 
   return (
     <section id="contact" className="py-24 bg-background grunge-overlay" ref={ref}>
-      {/* ... A HTML tartalom változatlan marad ... */}
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16">
+          className="text-center mb-16"
+        >
           <h2 className="font-display text-3xl md:text-5xl text-foreground mb-4">KAPCSOLAT</h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
-            Küldj fotót az autó sérüléséről és rövid időn belül árajánlatot adunk. Gyors válaszidő, rejtett költségek nélkül.
+            Küldj fotót az autó sérüléséről és rövid időn belül árajánlatot adunk.
           </p>
         </motion.div>
 
@@ -97,148 +103,61 @@ const ContactSection = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}>
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Név <span className="text-primary">*</span>
-                </label>
-                <Input name="name" placeholder="Teljes neved" className="bg-card border-border focus:border-primary" />
-              </div>
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Telefon <span className="text-primary">*</span>
-                </label>
-                <Input name="phone" placeholder="+36 30 123 4567" className="bg-card border-border focus:border-primary" />
-              </div>
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Email
-                </label>
-                <Input name="email" type="email" placeholder="email@pelda.hu" className="bg-card border-border focus:border-primary" />
-              </div>
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Autó típusa
-                </label>
-                <Input name="carType" placeholder="Pl. BMW E46 320d" className="bg-card border-border focus:border-primary" />
-              </div>
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Szolgáltatás
-                </label>
-                <select
-                  value={selectedService}
-                  onChange={(e) => {
-                    setSelectedService(e.target.value);
-                    if (e.target.value !== "Egyéb") setCustomService("");
-                  }}
-                  className="flex h-10 w-full rounded-md border border-input bg-card px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                  <option value="">Válassz szolgáltatást...</option>
-                  {serviceOptions.map((s) => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-              {selectedService === "Egyéb" && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  transition={{ duration: 0.3 }}>
-                  <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                    Milyen szolgáltatást keresel?
-                  </label>
-                  <Input
-                    value={customService}
-                    onChange={(e) => setCustomService(e.target.value)}
-                    placeholder="Írd le, miben segíthetünk..."
-                    className="bg-card border-border focus:border-primary" />
-                </motion.div>
-              )}
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Üzenet
-                </label>
-                <Textarea name="message" placeholder="Miben segíthetünk?" rows={4} className="bg-card border-border focus:border-primary" />
-              </div>
+              <Input name="name" placeholder="Név *" className="bg-card" required />
+              <Input name="phone" placeholder="Telefon *" className="bg-card" required />
+              <Input name="email" type="email" placeholder="Email" className="bg-card" />
+              <Input name="carType" placeholder="Autó típusa" className="bg-card" />
+              
+              <select
+                value={selectedService}
+                onChange={(e) => setSelectedService(e.target.value)}
+                className="flex h-10 w-full rounded-md border border-input bg-card px-3 py-2 text-sm"
+              >
+                <option value="">Válassz szolgáltatást...</option>
+                {serviceOptions.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
 
-              <div>
-                <label className="font-heading text-sm uppercase tracking-wider text-muted-foreground mb-2 block">
-                  Képek csatolása
+              <Textarea name="message" placeholder="Üzenet" rows={4} className="bg-card" />
+
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 cursor-pointer text-muted-foreground hover:text-primary transition-colors text-sm">
+                  <Upload className="w-4 h-4" />
+                  <span>Kép feltöltése (max. 5)</span>
+                  <input type="file" accept="image/*" multiple onChange={handleImageChange} className="hidden" />
                 </label>
-                <div className="space-y-3">
-                  {images.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {images.map((img, i) => (
-                        <div key={i} className="relative group">
-                          <img
-                            src={URL.createObjectURL(img)}
-                            alt={`Feltöltött kép ${i + 1}`}
-                            className="w-20 h-20 object-cover rounded border border-border" />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(i)}
-                            className="absolute -top-2 -right-2 w-5 h-5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                            <X className="w-3 h-3" />
-                          </button>
-                        </div>
-                      ))}
+                <div className="flex flex-wrap gap-2">
+                  {images.map((img, i) => (
+                    <div key={i} className="relative group">
+                      <img src={URL.createObjectURL(img)} className="w-16 h-16 object-cover rounded" />
+                      <button type="button" onClick={() => removeImage(i)} className="absolute -top-2 -right-2 bg-destructive rounded-full p-0.5"><X className="w-3 h-3 text-white" /></button>
                     </div>
-                  )}
-                  {images.length < 5 && (
-                    <label className="flex items-center gap-2 cursor-pointer text-muted-foreground hover:text-primary transition-colors font-body text-sm">
-                      <Upload className="w-4 h-4" />
-                      <span>Kép feltöltése (max. 5)</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onChange={handleImageChange}
-                        className="hidden" />
-                    </label>
-                  )}
+                  ))}
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rust-gradient text-primary-foreground font-heading text-base uppercase tracking-widest px-8 py-3 hover:brightness-110 transition-all duration-300 border border-primary/30 disabled:opacity-50">
+                className="w-full rust-gradient text-white font-heading py-3 uppercase tracking-widest hover:brightness-110 transition-all disabled:opacity-50"
+              >
                 {loading ? "Küldés..." : "Üzenet küldése"}
               </button>
             </form>
           </motion.div>
 
-          {/* Info rész változatlan */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-8">
-            <div className="bg-card border border-border p-8">
-              <h3 className="font-heading text-xl uppercase tracking-wider text-foreground mb-6">Elérhetőségek</h3>
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <p className="font-body text-foreground">Nagykanizsa, Egry József u. 7.</p>
-                    <p className="font-body text-sm text-muted-foreground">Gyarmati István e.v.</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <a href="tel:+36304418737" className="font-body text-foreground hover:text-primary transition-colors">
-                    +36 30 441 8737
-                  </a>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <a href="mailto:info@cmggarage.hu" className="font-body text-foreground hover:text-primary transition-colors">info@cmggarage.hu</a>
-                </div>
-                {/* ... Közösségi média linkek ... */}
-              </div>
+          <div className="bg-card border border-border p-8 space-y-6">
+            <h3 className="font-heading text-xl uppercase text-foreground">Elérhetőségek</h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4"><MapPin className="text-primary w-5" /> <span>Nagykanizsa, Egry József u. 7.</span></div>
+              <div className="flex items-center gap-4"><Phone className="text-primary w-5" /> <a href="tel:+36304418737">+36 30 441 8737</a></div>
+              <div className="flex items-center gap-4"><Mail className="text-primary w-5" /> <a href="mailto:info@cmggarage.hu">info@cmggarage.hu</a></div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
