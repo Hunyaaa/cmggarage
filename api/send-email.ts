@@ -1,32 +1,15 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
-
-export const config = {
-  runtime: 'edge',
-};
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function handler(req: Request) {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
-
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { name, phone, email, carType, service, message } = await req.json();
+    const { name, phone, email, carType, service, message } = req.body;
 
     const data = await resend.emails.send({
       from: 'CMG Garage <info@cmggarage.hu>',
@@ -44,15 +27,12 @@ export default async function handler(req: Request) {
       `,
     });
 
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return res.status(200).json(data);
   } catch (error) {
     console.error('Email sending error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Hiba az e-mail küldésekor', details: error instanceof Error ? error.message : 'Unknown error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return res.status(500).json({
+      error: 'Hiba az e-mail küldésekor',
+      details: error instanceof Error ? error.message : 'Unknown error',
+    });
   }
 }
