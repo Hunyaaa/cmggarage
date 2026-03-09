@@ -90,18 +90,21 @@ const HeroSection = () => {
             </button>
           </div>
 
-          <a
-            href="tel:+36304418737"
-            className="group flex items-center gap-3 px-8 py-3 border border-primary/30 bg-primary/5 hover:bg-primary/15 transition-all duration-300 rounded-full"
-          >
-            <span className="flex items-center justify-center w-9 h-9 rounded-full rust-gradient shadow-md shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
-              <Phone className="w-4 h-4 text-primary-foreground" />
+          <div className="flex flex-col items-center gap-2 mt-2">
+            <p className="font-body text-sm text-muted-foreground">
+              Gyors kérdésed van? Hívj minket közvetlenül!
+            </p>
+            <span className="font-heading text-lg tracking-wider text-foreground">
+              +36 30 441 8737
             </span>
-            <span className="flex flex-col items-start leading-tight">
-              <span className="font-heading text-xs uppercase tracking-widest text-muted-foreground">Hívjon most</span>
-              <span className="font-heading text-base tracking-wider text-foreground group-hover:text-primary transition-colors">+36 30 441 8737</span>
-            </span>
-          </a>
+            <a
+              href="tel:+36304418737"
+              className="group rust-gradient text-primary-foreground font-heading text-sm uppercase tracking-widest px-8 py-3 sm:px-10 w-full sm:w-auto text-center rounded-full hover:brightness-110 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <Phone className="w-4 h-4" />
+              Hívás most
+            </a>
+          </div>
         </motion.div>
 
         <motion.div
