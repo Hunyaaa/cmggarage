@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, CheckCircle, Camera } from "lucide-react";
+import { ChevronDown, CheckCircle, Camera, Phone } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 import workshop from "@/assets/workshop.jpeg";
 
