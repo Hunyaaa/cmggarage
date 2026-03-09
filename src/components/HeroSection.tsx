@@ -92,7 +92,7 @@ const HeroSection = () => {
 
           <div className="flex flex-col items-center gap-2 mt-2">
             <p className="font-body text-sm text-foreground font-medium">
-              Gyors kérdésed van? Hívj minket közvetlenül!
+              Gyors kérdésed van? Hívj engem közvetlenül!
             </p>
             <span className="font-heading text-lg tracking-wider text-foreground">
               +36 30 441 8737
