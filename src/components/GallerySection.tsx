@@ -20,15 +20,15 @@ import lampaBefore from "@/assets/gallery/lampa-before.jpeg";
 import lampaAfter from "@/assets/gallery/lampa-after.jpeg";
 
 const sliderItemsRow1 = [
-  { label: "PDR horpadásjavítás – fényezés nélkül javítva", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
-  { label: "MG jégkár – PDR technológiával javítva", tag: "MG JÉGKÁR", before: mgjegkarBefore, after: mgjegkarAfter },
-  { label: "Tető horpadásjavítás – PDR technológiával", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
+  { label: "PDR horpadásjavítás Nagykanizsa – fényezés nélküli javítás előtte utána", tag: "HORPADÁSJAVÍTÁS", before: horpadasAfter, after: horpadasBefore },
+  { label: "Jégkár javítás Nagykanizsa – MG PDR technológiával javítva előtte utána", tag: "MG JÉGKÁR", before: mgjegkarBefore, after: mgjegkarAfter },
+  { label: "Tető horpadásjavítás PDR technológiával Nagykanizsa előtte utána", tag: "TETŐ HORPADÁSJAVÍTÁS", before: tetoHorpadasAfter, after: tetoHorpadasBefore },
 ];
 
 const sliderItemsRow2 = [
-  { label: "Mercedes – korrekciós polírozás, showroom fény", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
-  { label: "Nissan 350Z – korrekciós polírozás, tükörfény", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
-  { label: "Volvo fényszóró felújítás – kristálytiszta eredmény", tag: "VOLVO LÁMPAFELÚJÍTÁS", before: volvoAfter, after: volvoBefore },
+  { label: "Autópolírozás Nagykanizsa – Mercedes fényezéskorrekció eredmény előtte utána", tag: "MERCEDES KORREKCIÓS POLÍR", before: merciAfter, after: merciBefore },
+  { label: "Fényezéskorrekció Nagykanizsa – Nissan 350Z korrekciós polírozás előtte utána", tag: "NISSAN 350Z KORREKCIÓS POLÍR", before: nissan350zAfter, after: nissan350zBefore },
+  { label: "Fényszóró felújítás Nagykanizsa – Volvo lámpa felújítás eredmény előtte utána", tag: "VOLVO LÁMPAFELÚJÍTÁS", before: volvoAfter, after: volvoBefore },
 ];
 
 
