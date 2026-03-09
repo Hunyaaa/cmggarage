@@ -150,12 +150,22 @@ const ContactSection = () => {
             </form>
           </motion.div>
 
-          <div className="bg-card border border-border p-8 space-y-6">
-            <h3 className="font-heading text-xl uppercase text-foreground">Elérhetőségek</h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4"><MapPin className="text-primary w-5" /> <a href="https://www.google.com/maps/dir/?api=1&destination=Nagykanizsa,+Egry+József+u.+7." target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline underline-offset-2">Nagykanizsa, Egry József u. 7.</a></div>
-              <div className="flex items-center gap-4"><Phone className="text-primary w-5" /> <a href="tel:+36304418737">+36 30 441 8737</a></div>
-              <div className="flex items-center gap-4"><Mail className="text-primary w-5" /> <a href="mailto:info@cmggarage.hu">info@cmggarage.hu</a></div>
+          <div className="space-y-6">
+            <div className="bg-card border border-border p-8 space-y-6">
+              <h3 className="font-heading text-xl uppercase text-foreground">Elérhetőségek</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4"><MapPin className="text-primary w-5" /> <a href="https://www.google.com/maps/dir/?api=1&destination=Nagykanizsa,+Egry+József+u.+7." target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline underline-offset-2">Nagykanizsa, Egry József u. 7.</a></div>
+                <div className="flex items-center gap-4"><Phone className="text-primary w-5" /> <a href="tel:+36304418737">+36 30 441 8737</a></div>
+                <div className="flex items-center gap-4"><Mail className="text-primary w-5" /> <a href="mailto:info@cmggarage.hu">info@cmggarage.hu</a></div>
+              </div>
+            </div>
+
+            <div className="bg-card border border-border p-8">
+              <h3 className="font-heading text-lg uppercase text-foreground mb-4">Nyitvatartás</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between"><span className="text-muted-foreground">Hétfő – Szombat</span><span className="font-heading text-foreground">8:00 – 17:00</span></div>
+                <div className="flex justify-between"><span className="text-muted-foreground">Vasárnap</span><span className="font-heading text-destructive">Zárva</span></div>
+              </div>
             </div>
           </div>
         </div>
