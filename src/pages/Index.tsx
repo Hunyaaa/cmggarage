@@ -19,7 +19,6 @@ const Index = () => (
     <WhyChooseUsSection />
     <GallerySection />
     <PricingSection />
-    <OpeningHoursSection />
     <ContactSection />
     <Footer />
   </>
