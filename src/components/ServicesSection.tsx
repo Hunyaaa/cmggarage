@@ -149,10 +149,10 @@ const ServicesSection = () => {
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-muted-foreground">
-            Prémium Autópolírozás és PDR Horpadásjavítás
+            Prémium autópolírozás és PDR horpadásjavítás Nagykanizsán
           </p>
           <p className="font-body text-muted-foreground mt-1">
-            Autópolírozás – Fényezéskorrekció mesterfokon
+            Fényezéskorrekció, jégkár javítás, kerámia bevonat és fényszóró felújítás – egy helyen
           </p>
         </motion.div>
 

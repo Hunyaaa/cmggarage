@@ -51,7 +51,7 @@ const HowItWorksSection = () => {
           </h2>
           <div className="scratch-line w-32 mx-auto mb-6" />
           <p className="font-body text-muted-foreground">
-            Egyszerű folyamat – gyors eredmény
+            Egyszerű folyamat – gyors eredmény. Legyen szó autópolírozásról, PDR horpadásjavításról vagy jégkár javításról Nagykanizsán, néhány lépésben elindulhatsz.
           </p>
         </motion.div>
 
