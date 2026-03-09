@@ -167,6 +167,19 @@ const ContactSection = () => {
                 <div className="flex justify-between"><span className="text-muted-foreground">Vasárnap</span><span className="font-heading text-destructive">Zárva</span></div>
               </div>
             </div>
+
+            <div className="border border-border overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2768.5!2d16.9906!3d46.4534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNagykanizsa%2C+Egry+J%C3%B3zsef+u.+7.!5e0!3m2!1shu!2shu!4v1700000000000"
+                width="100%"
+                height="200"
+                style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="C.M.G. PDR&Carpolish műhely helyszíne – Nagykanizsa, Egry József u. 7."
+              />
+            </div>
           </div>
         </div>
       </div>

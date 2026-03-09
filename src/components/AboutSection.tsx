@@ -30,7 +30,8 @@ const AboutSection = () => {
             Gyaresz vagyok, a <span className="text-primary font-semibold">C.M.G. PDR&Carpolish</span> alapítója.
             Nagykanizsán van a műhelyem, és minden munkát személyesen, a legnagyobb
             odafigyeléssel végzek – legyen szó egy egyszerű polírozásról vagy komplex
-            horpadásjavításról.
+            horpadásjavításról. Célom, hogy Nagykanizsán és környékén elérhető legyen a prémium szintű
+            autópolírozás, PDR horpadásjavítás és kerámia bevonat – mindezt egy helyen, megbízható minőségben.
           </p>
         </motion.div>
 

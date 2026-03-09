@@ -130,7 +130,7 @@ const GallerySection = () => {
             </h2>
             <div className="scratch-line w-32 mx-auto mb-6" />
             <p className="font-body text-muted-foreground">
-              Munkáim – az eredmények magukért beszélnek
+              Autópolírozás, PDR horpadásjavítás és fényezéskorrekció eredmények Nagykanizsán – az előtte-utána képek magukért beszélnek
             </p>
           </motion.div>
 

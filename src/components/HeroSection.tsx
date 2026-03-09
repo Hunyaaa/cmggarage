@@ -37,9 +37,12 @@ const HeroSection = () => {
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider mb-2">
-            <span className="text-primary">C.M.G.</span>{" "}
-            <span className="text-foreground">PDR&Carpolish</span>
+            <span className="text-primary">Autópolírozás</span>{" "}
+            <span className="text-foreground">és PDR horpadásjavítás Nagykanizsán</span>
           </h1>
+          <p className="font-display text-2xl md:text-3xl tracking-wider mb-0 text-primary">
+            C.M.G. PDR&Carpolish
+          </p>
           
           <div className="scratch-line w-48 mx-auto my-6" />
           
