@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, CheckCircle, Camera } from "lucide-react";
+import { ChevronDown, CheckCircle, Camera, Phone } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 import workshop from "@/assets/workshop.jpeg";
 
@@ -74,19 +74,34 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          className="flex flex-col items-center gap-4">
           
-          <button
-            onClick={scrollToContact}
-            className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30">
-            Kérj időpontot
-          </button>
-          <button
-            onClick={scrollToContact}
-            className="font-heading text-base uppercase tracking-widest px-8 py-3.5 border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 flex items-center gap-2">
-            <Camera className="w-4 h-4" />
-            Küldj fotót – kérj árajánlatot
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={scrollToContact}
+              className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30">
+              Kérj időpontot
+            </button>
+            <button
+              onClick={scrollToContact}
+              className="font-heading text-base uppercase tracking-widest px-8 py-3.5 border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 flex items-center gap-2">
+              <Camera className="w-4 h-4" />
+              Küldj fotót – kérj árajánlatot
+            </button>
+          </div>
+
+          <a
+            href="tel:+36304418737"
+            className="group flex items-center gap-3 px-8 py-3 border border-primary/30 bg-primary/5 hover:bg-primary/15 transition-all duration-300 rounded-full"
+          >
+            <span className="flex items-center justify-center w-9 h-9 rounded-full rust-gradient shadow-md shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
+              <Phone className="w-4 h-4 text-primary-foreground" />
+            </span>
+            <span className="flex flex-col items-start leading-tight">
+              <span className="font-heading text-xs uppercase tracking-widest text-muted-foreground">Hívjon most</span>
+              <span className="font-heading text-base tracking-wider text-foreground group-hover:text-primary transition-colors">+36 30 441 8737</span>
+            </span>
+          </a>
         </motion.div>
 
         <motion.div
