@@ -77,17 +77,19 @@ const HeroSection = () => {
           className="flex flex-col items-center gap-4">
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onClick={scrollToContact}
-              className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30">
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToContact(); }}
+              className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30 inline-block text-center">
               Kérj időpontot
-            </button>
-            <button
-              onClick={scrollToContact}
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToContact(); }}
               className="font-heading text-base uppercase tracking-widest px-8 py-3.5 border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 flex items-center gap-2">
               <Camera className="w-4 h-4" />
               Küldj fotót – kérj árajánlatot
-            </button>
+            </a>
           </div>
 
           <div className="flex flex-col items-center gap-2 mt-2">

@@ -33,10 +33,6 @@ const HowItWorksSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section id="how-it-works" className="py-24 bg-background grunge-overlay" ref={ref}>
       <div className="container relative z-10">
@@ -86,12 +82,16 @@ const HowItWorksSection = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <button
-            onClick={scrollToContact}
-            className="rust-gradient text-primary-foreground font-heading text-base uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30"
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-block rust-gradient text-primary-foreground font-heading text-base uppercase tracking-widest px-10 py-4 hover:brightness-110 transition-all duration-300 border border-primary/30"
           >
             Kérj árajánlatot most
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>
