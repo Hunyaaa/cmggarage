@@ -13,18 +13,18 @@ import Footer from "@/components/Footer";
 const Index = () => (
   <>
     <Helmet>
-      <title>Autópolírozás Nagykanizsa | PDR horpadásjavítás festés nélkül | CMG Garage</title>
-      <meta name="description" content="Professzionális autópolírozás, PDR horpadásjavítás és kerámia bevonat Nagykanizsán. Gyors, megfizethető autókozmetika. Hívjon most árajánlatért!" />
+      <title>Horpadásjavítás, Polírozás, Fényszóró Felújítás | C.M.G. PDR & CarPolish Nagykanizsa</title>
+      <meta name="description" content="Horpadásjavítás, autó polírozás és fényszóró felújítás Nagykanizsán. Kérj ajánlatot gyorsan és egyszerűen a C.M.G. PDR & CarPolish csapatától." />
       <link rel="canonical" href="https://www.cmggarage.hu/" />
-      <meta property="og:title" content="Autópolírozás Nagykanizsa | CMG Garage" />
-      <meta property="og:description" content="PDR horpadásjavítás, autópolírozás és kerámia bevonat Nagykanizsán." />
+      <meta property="og:title" content="C.M.G. PDR & CarPolish | Horpadásjavítás és Polírozás Nagykanizsán" />
+      <meta property="og:description" content="Horpadásjavítás, autó polírozás és fényszóró felújítás Nagykanizsán. Kérj ajánlatot egyszerűen." />
       <meta property="og:url" content="https://www.cmggarage.hu/" />
       <meta property="og:type" content="website" />
       <meta property="og:locale" content="hu_HU" />
       <meta property="og:site_name" content="C.M.G PDR&Carpolish" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Autópolírozás Nagykanizsa | CMG Garage" />
-      <meta name="twitter:description" content="PDR horpadásjavítás, autópolírozás és kerámia bevonat Nagykanizsán." />
+      <meta name="twitter:title" content="C.M.G. PDR & CarPolish | Horpadásjavítás és Polírozás Nagykanizsán" />
+      <meta name="twitter:description" content="Horpadásjavítás, autó polírozás és fényszóró felújítás Nagykanizsán. Kérj ajánlatot egyszerűen." />
     </Helmet>
     <Navbar />
     <HeroSection />
