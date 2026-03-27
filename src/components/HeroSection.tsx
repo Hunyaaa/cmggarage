@@ -37,8 +37,8 @@ const HeroSection = () => {
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider mb-2">
-            <span className="text-primary">Autópolírozás</span>{" "}
-            <span className="text-foreground">és PDR horpadásjavítás Nagykanizsán</span>
+            <span className="text-primary">Horpadásjavítás,</span>{" "}
+            <span className="text-foreground">autó polírozás és fényszóró felújítás Nagykanizsán</span>
           </h1>
           <p className="font-display text-2xl md:text-3xl tracking-wider mb-0 text-primary">
             C.M.G. PDR&Carpolish
@@ -47,7 +47,7 @@ const HeroSection = () => {
           <div className="scratch-line w-48 mx-auto my-6" />
           
           <p className="font-heading text-xl md:text-2xl uppercase tracking-[0.3em] text-foreground mb-4">
-            Prémium autópolírozás és PDR horpadásjavítás Nagykanizsán
+            PDR horpadásjavítás · Autó polírozás · Fényszóró felújítás
           </p>
           <p className="font-body text-base text-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
             Fényezés nélküli horpadásjavítás, professzionális polírozás, kerámia bevonat és jégkár javítás – egy helyen, szakértő kézzel.
