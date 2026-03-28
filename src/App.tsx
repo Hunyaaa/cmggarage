@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Horpadasjavitas from "./pages/Horpadasjavitas";
 import Polirozas from "./pages/Polirozas";
 import FenysziroFelujitas from "./pages/FenysziroFelujitas";
+import Ajanlat from "./pages/Ajanlat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/horpadasjavitas" element={<Horpadasjavitas />} />
           <Route path="/polirozas" element={<Polirozas />} />
           <Route path="/fenyszoro-felujitas" element={<FenysziroFelujitas />} />
+          <Route path="/ajanlat" element={<Ajanlat />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
