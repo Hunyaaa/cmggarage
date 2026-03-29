@@ -10,7 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbydb6X5rppDYg5uH6U1TEwnGFmgRJWy8ciYgeSf3jp_GZQw-kIrLaPWaC12vUKrQVi1xg/exec";
+  "https://script.google.com/macros/s/AKfycbyRqX6Wv1xnCrwdtDMYOsQO79JV3tWEXub4ri_0y7Svjp2jXQYNL41R-2mzkGjwkmhUkg/exec";
 
 interface ApiData {
   kod: string;
@@ -82,6 +82,9 @@ const Ajanlat = () => {
         return;
       }
 
+      console.log("API response:", json);
+      console.log("Result data:", json.data);
+
       const data = json.data as ApiData;
 
       if (data.statusz && data.statusz.toLowerCase() !== "aktiv") {
@@ -89,7 +92,6 @@ const Ajanlat = () => {
         return;
       }
 
-      console.log("API response data:", data);
       setState({ kind: "result", data });
     } catch {
       setState({
