@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Phone, Mail, AlertCircle, Calendar, ImageIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ImageLightbox from "@/components/ImageLightbox";
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbzBvscKehCduv9K3ClDEwiaWy0-65PYcdPEczP7RAnHfhmw3dnTRUC4xYzF-1XgNctDlg/exec";
@@ -56,6 +57,9 @@ function renderEstimate(tol: string, ig: string) {
 const Ajanlat = () => {
   const [code, setCode] = useState("");
   const [state, setState] = useState<State>({ kind: "idle" });
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  const closeLightbox = useCallback(() => setLightboxSrc(null), []);
 
   const handleSearch = async () => {
     const trimmed = code.trim();
