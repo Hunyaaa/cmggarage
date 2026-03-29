@@ -349,6 +349,13 @@ const Ajanlat = () => {
         </section>
       </main>
 
+      <ImageLightbox
+        src={lightboxSrc || ""}
+        alt="Sérülés fotó"
+        isOpen={!!lightboxSrc}
+        onClose={closeLightbox}
+      />
+
       <Footer />
     </>
   );
