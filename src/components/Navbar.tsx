@@ -19,7 +19,12 @@ const Navbar = () => {
     e.preventDefault();
     setOpen(false);
     const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Not on the main page – navigate there with the anchor
+      window.location.href = "/" + href;
+    }
   };
 
   return (
