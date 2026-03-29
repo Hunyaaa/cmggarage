@@ -10,7 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbyRqX6Wv1xnCrwdtDMYOsQO79JV3tWEXub4ri_0y7Svjp2jXQYNL41R-2mzkGjwkmhUkg/exec";
+  "https://script.google.com/macros/s/AKfycbzBvscKehCduv9K3ClDEwiaWy0-65PYcdPEczP7RAnHfhmw3dnTRUC4xYzF-1XgNctDlg/exec";
 
 interface ApiData {
   kod: string;
@@ -277,20 +277,22 @@ const Ajanlat = () => {
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                           {images.map((url, i) => (
-                            <a
+                            <img
                               key={i}
-                              href={url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block overflow-hidden border border-border rounded group"
-                            >
-                              <img
-                                src={url}
-                                alt={`Sérülés fotó ${i + 1}`}
-                                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                                loading="lazy"
-                              />
-                            </a>
+                              src={url}
+                              alt={`Sérülés fotó ${i + 1}`}
+                              className="w-full rounded-xl object-cover"
+                              style={{ maxWidth: "420px", height: "auto" }}
+                              loading="lazy"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.style.display = "none";
+                                const fallback = document.createElement("p");
+                                fallback.textContent = "A kép jelenleg nem tölthető be.";
+                                fallback.className = "text-sm text-muted-foreground";
+                                target.parentElement?.appendChild(fallback);
+                              }}
+                            />
                           ))}
                         </div>
                       </div>
