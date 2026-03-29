@@ -359,7 +359,7 @@ const Ajanlat = () => {
                     {/* CTAs */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                       <a
-href="/#contact"
+href="/#contact" aria-label="Ugrás a Kapcsolat űrlaphoz"
                         className="rust-gradient text-primary-foreground font-heading text-lg uppercase tracking-widest px-8 py-3.5 hover:brightness-110 transition-all border border-primary/30 flex items-center justify-center gap-2 rounded-md"
                       >
                         <MessageCircle className="w-5 h-5" />

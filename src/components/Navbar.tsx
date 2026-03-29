@@ -12,19 +12,31 @@ const links = [
   { label: "Kapcsolat", href: "#contact" },
 ];
 
+const NAVBAR_OFFSET = 96;
+
+const scrollToAnchor = (href: string) => {
+  const el = document.querySelector(href);
+  if (!el) return false;
+
+  const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
+  window.scrollTo({ top, behavior: "smooth" });
+  return true;
+};
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      // Not on the main page – navigate there with the anchor
-      window.location.href = "/" + href;
+
+    if (window.location.pathname === "/") {
+      scrollToAnchor(href);
+      window.history.replaceState(null, "", href);
+      return;
     }
+
+    window.location.href = `/${href}`;
   };
 
   return (
@@ -38,7 +50,6 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop */}
         <div className="hidden md:flex gap-8">
           {links.map((l) => (
             <a
@@ -52,13 +63,11 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile toggle */}
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Menü megnyitása">
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-background border-b border-border pb-4">
           {links.map((l) => (
