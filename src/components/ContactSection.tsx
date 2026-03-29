@@ -84,7 +84,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background grunge-overlay" ref={ref}>
+    <section id="contact" className="scroll-mt-24 py-24 bg-background grunge-overlay" ref={ref}>
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
