@@ -89,6 +89,7 @@ const Ajanlat = () => {
         return;
       }
 
+      console.log("API response data:", data);
       setState({ kind: "result", data });
     } catch {
       setState({
