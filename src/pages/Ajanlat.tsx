@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Phone, Mail, AlertCircle, Calendar, ImageIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ImageLightbox from "@/components/ImageLightbox";
 
 const API_URL =
   "https://script.google.com/macros/s/AKfycbzBvscKehCduv9K3ClDEwiaWy0-65PYcdPEczP7RAnHfhmw3dnTRUC4xYzF-1XgNctDlg/exec";
@@ -56,6 +57,9 @@ function renderEstimate(tol: string, ig: string) {
 const Ajanlat = () => {
   const [code, setCode] = useState("");
   const [state, setState] = useState<State>({ kind: "idle" });
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  const closeLightbox = useCallback(() => setLightboxSrc(null), []);
 
   const handleSearch = async () => {
     const trimmed = code.trim();
@@ -277,22 +281,28 @@ const Ajanlat = () => {
                         </h2>
                         <div className={`grid gap-4 ${images.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
                           {images.map((url, i) => (
-                            <img
-                              key={i}
-                              src={url}
-                              alt={`Sérülés fotó ${i + 1}`}
-                              className="w-full max-w-full block rounded-xl object-cover mt-1"
-                              style={{ height: "auto" }}
-                              loading="lazy"
-                              onError={(e) => {
-                                const target = e.currentTarget;
-                                target.style.display = "none";
-                                const fallback = document.createElement("p");
-                                fallback.textContent = "A kép jelenleg nem tölthető be.";
-                                fallback.className = "text-sm text-muted-foreground";
-                                target.parentElement?.appendChild(fallback);
-                              }}
-                            />
+                            <div key={i} className="relative group cursor-pointer" onClick={() => setLightboxSrc(url)}>
+                              <img
+                                src={url}
+                                alt={`Sérülés fotó ${i + 1}`}
+                                className="w-full max-w-full block rounded-xl object-cover mt-1 transition-opacity group-hover:opacity-90"
+                                style={{ height: "auto" }}
+                                loading="lazy"
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  target.style.display = "none";
+                                  const fallback = document.createElement("p");
+                                  fallback.textContent = "A kép jelenleg nem tölthető be.";
+                                  fallback.className = "text-sm text-muted-foreground";
+                                  target.parentElement?.appendChild(fallback);
+                                }}
+                              />
+                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-xl bg-black/20">
+                                <span className="bg-black/60 text-white text-sm px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                                  <ImageIcon className="w-4 h-4" /> Nagyítás
+                                </span>
+                              </div>
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -338,6 +348,13 @@ const Ajanlat = () => {
           </AnimatePresence>
         </section>
       </main>
+
+      <ImageLightbox
+        src={lightboxSrc || ""}
+        alt="Sérülés fotó"
+        isOpen={!!lightboxSrc}
+        onClose={closeLightbox}
+      />
 
       <Footer />
     </>
