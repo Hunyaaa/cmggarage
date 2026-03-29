@@ -89,6 +89,7 @@ const Ajanlat = () => {
         return;
       }
 
+      console.log("API response data:", data);
       setState({ kind: "result", data });
     } catch {
       setState({
@@ -104,7 +105,9 @@ const Ajanlat = () => {
 
   const images =
     state.kind === "result"
-      ? [state.data.kep1, state.data.kep2, state.data.kep3].filter((u) => u?.trim())
+      ? [state.data.kep1, state.data.kep2, state.data.kep3].filter(
+          (u): u is string => typeof u === "string" && u.trim().length > 0
+        )
       : [];
 
   return (
