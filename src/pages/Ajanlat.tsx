@@ -275,14 +275,14 @@ const Ajanlat = () => {
                           <ImageIcon className="w-5 h-5 text-primary" />
                           Fotók
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        <div className={`grid gap-4 ${images.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
                           {images.map((url, i) => (
                             <img
                               key={i}
                               src={url}
                               alt={`Sérülés fotó ${i + 1}`}
-                              className="w-full rounded-xl object-cover"
-                              style={{ maxWidth: "420px", height: "auto" }}
+                              className="w-full max-w-full block rounded-xl object-cover mt-1"
+                              style={{ height: "auto" }}
                               loading="lazy"
                               onError={(e) => {
                                 const target = e.currentTarget;
